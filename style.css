@@ -191,9 +191,12 @@ hr {
 }
 .cdesc {
     height: 30px;
-    vertical-align: top;
     margin-bottom: 10px;
     font-size: 15px;
+    display: flex; /* Enable flexbox */
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+    text-align: center; /* Ensure text aligns in the middle */
 }
 @media (max-width: 768px) {
     .cdesc {
