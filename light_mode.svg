@@ -3,7 +3,7 @@
 <style>
 @font-face {
 src: local('Consolas'), local('Consolas Bold');
-font-family: 'ConsolasFallback';
+font-family: 'ConsolasFallback'; 
 font-display: swap;
 -webkit-size-adjust: 109%;
 size-adjust: 109%;
