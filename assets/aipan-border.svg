@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360">
+  <!-- Aipan-style frame, used as a CSS border-image (3x3 grid of 120px tiles, slice = 120).
+       #f = eight-petal flower, #e = one edge tile (outer side up), #c = one corner tile (top-left).
+       Everything else is a rotated copy. Pattern: diamonds holding flowers, nested chevrons in the gaps. -->
+  <defs>
+    <g id="f" fill="#fdfbf7" stroke="none">
+      <circle r="5"/>
+      <ellipse cy="-18.5" rx="5.6" ry="10.5"/>
+      <ellipse cy="-18.5" rx="5.6" ry="10.5" transform="rotate(45)"/>
+      <ellipse cy="-18.5" rx="5.6" ry="10.5" transform="rotate(90)"/>
+      <ellipse cy="-18.5" rx="5.6" ry="10.5" transform="rotate(135)"/>
+      <ellipse cy="-18.5" rx="5.6" ry="10.5" transform="rotate(180)"/>
+      <ellipse cy="-18.5" rx="5.6" ry="10.5" transform="rotate(225)"/>
+      <ellipse cy="-18.5" rx="5.6" ry="10.5" transform="rotate(270)"/>
+      <ellipse cy="-18.5" rx="5.6" ry="10.5" transform="rotate(315)"/>
+    </g>
+    <g id="e" fill="none" stroke="#fdfbf7" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M0 5H120M0 115H120" stroke-width="5.5"/>
+      <path d="M0 60 60 8 120 60 60 112Z" stroke-width="5"/>
+      <path d="M43.8 7 0 45M26.5 7 0 30M76.2 7 120 45M93.5 7 120 30"/>
+      <path d="M43.8 113 0 75M26.5 113 0 90M76.2 113 120 75M93.5 113 120 90"/>
+      <path d="M0 7H10L0 16ZM120 7H110L120 16ZM0 113H10L0 104ZM120 113H110L120 104Z" fill="#fdfbf7" stroke-width="2"/>
+      <use href="#f" x="60" y="60"/>
+    </g>
+    <g id="c" fill="none" stroke="#fdfbf7" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M120 5H5V120M117.5 5V117.5H5" stroke-width="5.5"/>
+      <path d="M61 9 113 61 61 113 9 61Z" stroke-width="5"/>
+      <path d="M9 37 37 9M85 9 113 37M113 85 85 113M37 113 9 85"/>
+      <path d="M9 9H21L9 21ZM113 9V21L101 9ZM113 113H101L113 101ZM9 113V101L21 113Z" fill="#fdfbf7" stroke-width="2"/>
+      <use href="#f" x="61" y="61"/>
+    </g>
+  </defs>
+  <use href="#c"/>
+  <use href="#e" x="120"/>
+  <use href="#c" transform="translate(360 0) rotate(90)"/>
+  <use href="#e" transform="translate(360 120) rotate(90)"/>
+  <use href="#c" transform="translate(360 360) rotate(180)"/>
+  <use href="#e" transform="translate(240 360) rotate(180)"/>
+  <use href="#c" transform="translate(0 360) rotate(270)"/>
+  <use href="#e" transform="translate(0 240) rotate(270)"/>
+</svg>

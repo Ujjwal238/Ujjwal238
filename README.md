@@ -1,8 +1,19 @@
-## <a target="_blank" href="https://ujjwal238.github.io/Ujjwal238/">Portfolio Here</a> 
+<p align="center">
+  <a href="https://ujjwal238.github.io/Ujjwal238/"><img alt="" src="assets/aipan-band.svg" width="832"></a>
+</p>
 
-<a href="https://github.com/Ujjwal238/Ujjwal238">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Ujjwal238/Ujjwal238/main/dark_mode.svg">
-    <img alt="Ujjwal's GitHub Profile README" src="https://raw.githubusercontent.com/Ujjwal238/Ujjwal238/main/light_mode.svg">
-  </picture>
-</a>
+<h1 align="center">Ujjwal Mishra</h1>
+
+<p align="center"><i>I love making machines talk human.</i></p>
+
+<p align="center">
+  <a href="https://ujjwal238.github.io/Ujjwal238/"><b>Portfolio</b></a>
+  &nbsp;·&nbsp;
+  <a href="https://scholar.google.co.in/citations?user=Ggw7z6sAAAAJ&hl=en">Google Scholar</a>
+  &nbsp;·&nbsp;
+  <a href="https://www.linkedin.com/in/-ujjwal-mishra/">LinkedIn</a>
+</p>
+
+<p align="center">
+  <a href="https://ujjwal238.github.io/Ujjwal238/"><img alt="" src="assets/aipan-band.svg" width="832"></a>
+</p>

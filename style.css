@@ -1,24 +1,67 @@
+/* Aipan theme: red linework and a patterned red band along the top and bottom of a light paper ground. One mode only. */
+:root {
+    color-scheme: only light; /* single light mode; asks browsers not to auto-darken it */
+    --red: #772018;         /* between geru and maroon: frame, linework, secondary text */
+    --ground: #fdfbf7;      /* light paper ground */
+    --text: #421510;        /* body text */
+    --dim: var(--red);      /* secondary text */
+    --line: var(--red);     /* dots, rings and other linework */
+    --accent: #a5281b;      /* hover and focus */
+    --rule: rgba(119, 32, 24, 0.3);  /* hairlines between projects */
+    --tile: #ffffff;        /* backing tile for logos and thumbnails */
+    --band: rgba(119, 32, 24, 0.1);  /* alternate sections: a red tint over the paper */
+    --band-text: var(--text);
+    --band-accent: var(--red);       /* band rule and author names */
+    --frame-bg: var(--red);            /* colour behind the border linework */
+    --frame: clamp(26px, 3.7vw, 42px); /* thickness of the aipan border */
+    /* slight paper grain: a small tile of soft brown noise, repeated over the whole page */
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .15 0 0 0 0 .08 0 0 0 .34 -.11'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+html {
+    background-color: var(--frame-bg);
+}
 body {
     margin: 0;
     padding: 0;
-    background-color: white;
-    font-family: 'Times New Roman';
-    font-size: 16px;
-    line-height: 1.4;
-    color: #333;
+    box-sizing: border-box;
+    min-height: 100vh;
+    background: var(--grain), linear-gradient(var(--ground), var(--ground)) padding-box, var(--frame-bg);
+    border: solid transparent;
+    border-width: var(--frame) 0; /* top and bottom only; give the sides a width to frame all four */
+    border-image: url(assets/aipan-border.svg) 120 round;
+    font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, 'Times New Roman', serif;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--text);
+}
+a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+a:hover {
+    color: var(--accent);
+}
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 3px;
+}
+::selection {
+    background: var(--text);
+    color: var(--ground);
 }
 
 /* Layout */
 .container {
+    max-width: 970px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 15px;
     padding-right: 15px;
-}
-@media (min-width: 992px) {
-    .container {
-        width: 970px;
-     }
 }
 .row {
     display: grid;
@@ -27,7 +70,7 @@ body {
 
 /* Props */
 #dhead {
-    margin-top: 20px;
+    margin-top: 34px;
 }
 #dpic {
     grid-column: span 6;
@@ -35,7 +78,7 @@ body {
 }
 #ddesc {
     padding-top: 55px;
-    padding-left: 20px;
+    padding-left: 30px;
     grid-column: span 6;
 }
 @media (max-width: 991px) {
@@ -45,12 +88,14 @@ body {
     }
     #ddesc {
       grid-column: span 12;
-      padding-top: 20px;
+      padding-top: 26px;
+      padding-left: 0;
       text-align: center;
     }
 }
 h1 {
-    font-size: 34px;
+    font-size: 36px;
+    line-height: 1.25;
     font-weight: normal;
     padding: 0;
     margin: 0;
@@ -58,10 +103,10 @@ h1 {
 h2 {
     font-weight: normal;
     font-style: italic;
-    color: #999;
-    font-size: 18px;
+    color: var(--dim);
+    font-size: 19px;
     padding: 0;
-    margin: 5px 0 10px 0;
+    margin: 5px 0 12px 0;
 }
 @media (min-width: 992px) {
     h2 {
@@ -71,56 +116,77 @@ h2 {
 #dpic img {
     width: 240px;
     height: 240px;
-    border-radius: 120px;
+    max-width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--line);
 }
 .iico {
     width: 40px;
     height: 40px;
     margin-right: 4px;
-    
+    transition: transform 0.2s ease;
 }
-
-
+a:hover .iico,
+.ibtn:hover .iico {
+    transform: translateY(-2px);
+}
+.ibtn { /* the email icon is a real button so it works from the keyboard */
+    background: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    cursor: pointer;
+}
 #demail {
     margin-top: 10px;
-    color: #555;
+    min-height: 1.55em;
+    color: var(--dim);
     opacity: 0;
-    transition: opacity 0.7s;
+    visibility: hidden;
+    transition: opacity 0.7s, visibility 0.7s;
 }
-hr {
-    height: 1px;
-    background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
-    background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
-    background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
-    background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+#demail.shown {
+    opacity: 1;
+    visibility: visible;
+}
+hr { /* a double rule, fading out at both ends */
+    height: 6px;
     padding: 0;
-    margin: 20px 0px 20px 0px;
+    margin: 26px 0 26px 0;
     border: 0;
+    background: linear-gradient(var(--red), var(--red)) top / 100% 2px no-repeat, linear-gradient(var(--red), var(--red)) bottom / 100% 1px no-repeat;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 30%, #000 70%, transparent);
+            mask-image: linear-gradient(to right, transparent, #000 30%, #000 70%, transparent);
 }
 .ico {
     grid-column: span 1;
     vertical-align: top;
-    border-left: 2px solid #7a7a7a;
+    border-left: 2px solid var(--dim);
     position: relative;
 }
-.ico img {
-    border-radius: 5px;
+.ico img { /* logos sit on a light tile */
+    box-sizing: border-box;
+    border-radius: 8px;
     width: 100%;
     max-width: 80px;
     margin-left: 10px;
+    padding: 4px;
+    background-color: var(--tile);
 }
 .desc {
     grid-column: span 10;
     vertical-align: top;
     font-size: 17px;
     padding-left: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 22px;
     text-align: justify;
     margin-top: auto;
     margin-bottom: auto;
 }
 .entry {
-    
+
 }
 .entry-dot {
     position: absolute;
@@ -129,15 +195,16 @@ hr {
     width: 10px;
     height: 10px;
     border-radius: 7px;
-    background-color: #7a7a7a;
-    border: 2px solid white;
+    background-color: var(--line);
+    border: 2px solid var(--ground);
 }
 .timespan {
     grid-column: span 1;
     font-size: 14px;
+    line-height: 1.4;
     text-align: right;
     padding-right: 5px;
-    color: #7a7a7a;
+    color: var(--dim);
 }
 .hassets {
     position: relative;
@@ -154,9 +221,53 @@ hr {
 }
 .ctitle {
     font-size: 36px;
-    margin-bottom: 20px;
+    line-height: 1.25;
+    margin-bottom: 24px;
     margin-top: 40px;
+    text-align: center;
 }
+.ctitle::after { /* short dotted flourish under each section title */
+    content: "";
+    display: block;
+    width: 66px;
+    margin: 6px auto 0 auto;
+    border-top: 5px dotted currentColor;
+}
+
+/* Band (every other section): tinted ground with scalloped edges */
+.band {
+    position: relative;
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 40px;
+    background-color: var(--band);
+    color: var(--band-text);
+}
+.band::before,
+.band::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 9px;
+    /* scallops: the page ground (with its grain), cut to a row of half-circles */
+    background: var(--grain), var(--ground);
+    -webkit-mask: radial-gradient(circle at 50% 0, #000 8.6px, transparent 9.2px) 50% 0 / 18px 9px repeat-x;
+            mask: radial-gradient(circle at 50% 0, #000 8.6px, transparent 9.2px) 50% 0 / 18px 9px repeat-x;
+}
+.band::after {
+    top: auto;
+    bottom: 0;
+    transform: scaleY(-1);
+}
+.band a:hover {
+    color: var(--band-accent);
+}
+.band a:focus-visible {
+    outline-color: var(--band-accent);
+}
+
 #featured-talks .row {
     grid-column-gap: 10px;
     grid-row-gap: 10px;
@@ -165,16 +276,16 @@ hr {
 .card {
     grid-column: span 3;
     vertical-align: top;
-    background-color: #eee;
-    border: 1px solid #ddd;
-    border-radius: 3px;
+    border: 1px solid var(--band-accent);
+    border-radius: 8px;
     padding: 5px;
-    background-color: white;
+    background-color: var(--tile);
+    color: var(--text);
     padding-bottom: 10px;
-    transition: box-shadow 0.3s ease; /* Optional: adds a smooth transition effect */
+    transition: box-shadow 0.3s ease;
 }
 .card:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(74, 24, 16, 0.3);
 }
 @media (max-width: 991px) {
     .card {
@@ -193,10 +304,10 @@ hr {
     height: 30px;
     margin-bottom: 10px;
     font-size: 15px;
-    display: flex; /* Enable flexbox */
-    align-items: center; /* Center content vertically */
-    justify-content: center; /* Center content horizontally */
-    text-align: center; /* Ensure text aligns in the middle */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 @media (max-width: 768px) {
     .cdesc {
@@ -209,13 +320,14 @@ hr {
     grid-row-gap: 10px;
 }
 .project {
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #eee;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
 }
 .pico {
     float: left;
-    margin-right: 10px;
+    margin-right: 14px;
+    margin-top: 4px;
 }
 .pdesc {
     text-align: justify;
@@ -224,36 +336,77 @@ hr {
     clear: both;
 }
 .pico img {
+    display: block;
+    box-sizing: border-box;
     height: 80px;
     width: 80px;
-    border-radius: 5px;
-    border: 1px solid #999;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid var(--line);
+    background-color: var(--tile);
 }
 .pub {
-    font-size: 14px;
-    border-left: 4px solid #aaa;
-    padding: 2px 0px 2px 10px;
-    margin-bottom: 10px;
+    font-size: 15px;
+    border-left: 4px solid var(--band-accent);
+    padding: 2px 0px 2px 12px;
+    margin-bottom: 14px;
 }
 .pub-title {
     display: inline;
-    color: #333;
 }
 .pub-venue {
     display: inline;
-    color: rgb(10, 8, 8);
+    font-weight: bold;
 }
 .pub-authors {
     display: block;
-    color: #900;
+    color: var(--band-accent);
 }
 
+li {
+    margin-bottom: 6px;
+}
+li::marker {
+    color: var(--dim);
+}
 .nodot {
     list-style-type: none;
     padding-left: 0;
 }
-#credit{
+#credit {
     text-align: end;
     padding-right: 1%;
-    font-size: 10px;
+    font-size: 12px;
+    color: var(--dim);
+}
+
+/* Phones: give the timeline fixed year and logo columns, and stop justifying narrow text */
+@media (max-width: 600px) {
+    .entry.row {
+        grid-template-columns: 48px 46px 1fr;
+    }
+    .entry .timespan,
+    .entry .ico,
+    .entry .desc {
+        grid-column: auto;
+    }
+    .timespan {
+        font-size: 13px;
+    }
+    .ico img {
+        width: 34px;
+        margin-left: 8px;
+        padding: 3px;
+        border-radius: 6px;
+    }
+    .desc {
+        padding-left: 10px;
+    }
+    .desc,
+    .pdesc {
+        text-align: left;
+    }
+    .ctitle {
+        font-size: 31px;
+    }
 }
